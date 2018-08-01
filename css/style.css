@@ -1,3 +1,7 @@
+body{
+	background-color:bisque;
+	color:brown;
+}
 #main{
 width:960px;
 margin:50px auto;
@@ -9,7 +13,6 @@ color:red;
 }
 
 h2{
-background-color: #FEFFED;
 text-align:center;
 border-radius: 10px 10px 0 0;
 margin: -10px -40px;
@@ -28,7 +31,7 @@ margin-top: 70px;
 }
 
 input[type=text],input[type=password], input[type=email]{
-width:99.5%;
+
 padding: 10px;
 margin-top: 8px;
 border: 1px solid #ccc;
@@ -39,9 +42,9 @@ font-family:raleway;
 
 input[type=submit]{
 
-background-color:#FFBC00;
+background-color:brown;
 color: white;
-border: 2px solid #FFCB00;
+border: 2px solid brown;
 padding: 10px;
 font-size:20px;
 cursor:pointer;
@@ -66,13 +69,18 @@ margin-top: -168px;
 
 a{
 text-decoration:none;
-color: cornflowerblue;
+color: blue;
 }
 
 i{
 color: cornflowerblue;
 }
-
+.clear{
+	clear:both;
+}
+.table_div{
+	margin-top:40px;
+}
 .error_msg{
 color:red;
 font-size: 16px;
@@ -86,4 +94,66 @@ color: #6495ED;
 left: 262px;
 width: 500px;
 text-align: center;
+}
+.menu_link {
+	margin-top: 30px;
+	width:100%;
+}
+.menu_link a{ 
+    padding: 6px;
+    background-color: brown;
+    border-radius: 3px;
+    margin-left: 5px;
+    color: #fff;
+}
+.form_details{
+	width:50%;
+}
+.form_details .left{
+	width:20%; 
+	float:left;
+}
+.container{
+	margin:20px;
+	padding:20px;
+}
+.searched_result table , .form_details_stud , .subject_list .get_student_list , .section_class .choose_section{
+	margin-top:20px;
+}
+.table_list {
+	width:50%;
+	float:left;
+}
+.form_details_stud label, .form_details_stud input {
+	margin-right:20px;
+}
+.form_details_stud h4{
+	margin:0!important;
+}
+.choose_exam_div button , .exam_subject button{
+	background-color: brown;
+    color: white;
+    border: 2px solid brown;
+    padding: 5px;
+    font-size: 15px;
+    cursor: pointer;    
+    margin-bottom: 15px;
+    margin-right: 15px;	
+}
+
+.container select{
+	padding: 5px;
+    border-radius: 5px;
+    border: 1px solid brown;
+}
+.section_class input[type=submit]{
+	margin-left:20px;
+}
+.form_details select{
+	width:30%;
+}
+.attendance_class .left{
+	float:none!important;
+	margin-top:20px;
+	margin-bottom:20px;
 }

@@ -1,5 +1,4 @@
- <!DOCTYPE html> 
-<html lang = "en">
+
 <?php
 if (isset($this->session->userdata['logged_in'])) {
 $username = ($this->session->userdata['logged_in']['username']);
@@ -8,36 +7,8 @@ $email = ($this->session->userdata['logged_in']['email']);
 header("location: login");
 }
 ?>
-<head> 
-  <meta charset = "utf-8"> 
-  <title>Students Example</title> 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
-<body>
-<style>
-.menu_link {
-	margin-top: 20px;
-	float: right;
-}
-.menu_link a{ 
-    padding: 10px;
-    background-color: burlywood;
-    border-radius: 3px;
-    margin: 5px;
-    color: #000;
-}
-.form_details{width:50%;}
-.form_details .left{width:20%; float:left;}
-</style>
-<div class="menu_link">
-      <a href = "<?php echo base_url(); ?>stud/add_view">Add</a>
-	  <a href = "<?php echo base_url(); ?>samplequiz">Add Quiz Questions and answer</a>
-      <a href = "<?php echo base_url(); ?>login">Login</a>
-      <a href = "<?php echo base_url(); ?>user_authentication/user_registration_show">Register</a>
-      <a href = "<?php echo base_url(); ?>exam">Exam Details</a>
-	  <a href = "<?php echo base_url(); ?>report">Report</a>
-	  <b id="logout"><a href="logout">Logout</a></b>
-</div>
+
+
 <h1>Student application form</h1>
 <h4>Student details:</h4>
 <?php 
@@ -123,6 +94,3 @@ header("location: login");
 				echo $status;
 			}
 ?>
-
-</body>
-</html>

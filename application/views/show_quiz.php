@@ -1,11 +1,3 @@
-<!DOCTYPE html> 
-<html lang = "en">
-<head> 
-<meta charset = "utf-8"> 
-<title>Students Example</title> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
-<body> 
 <?php 
 	$i =1;
 	if(isset($records)){
@@ -32,5 +24,3 @@
 		echo 'Your score is '.$result .'. Thanks for your interest in quiz.';
 	}
 ?>
-</body>
-</html>

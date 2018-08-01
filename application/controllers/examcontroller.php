@@ -21,7 +21,7 @@ class examcontroller extends CI_Controller {
 			'exam_name' => $this->input->post('exam_name')			
 			);
 			$getexamsub = $this->exammodel->getexamsub($data);	
-			echo '<div class="">Choose subject for <strong>'.$this->input->post('exam_name') .'</strong></div>';
+			echo '<h4>Choose subject for <strong>'.$this->input->post('exam_name') .'</strong></h4>';
 			foreach($getexamsub['result'] as $res){
 				  echo '<button type="button" class="subjname" data-exid="'.$res->id.'">'.$res->subject_name . '</button>';
 			} 

@@ -33,7 +33,7 @@ class AttendanceModel extends CI_Model {
 		  if(isset($_POST['viewsubmit'])){
 			  // SELECT a.student_id,a.attendance,s.name FROM `attendance` as a,`student` as s where a.student_id=s.roll_no AND a.class_id=1 AND a.section_id=1
 			$where_con = array('attendance.class_id'=>$class_id,'attendance.section_id'=>$section_id);
-			$this->db->select('student.roll_no,  student.name, attendance.attendance , class.class_name,section.section');
+			$this->db->select('student.roll_no,  student.name, attendance.attendance ,class.class_name,section.section,attendance.created');
 			$this->db->from('attendance');			
 			$this->db->join('student', 'student.roll_no = attendance.student_id');
 			$this->db->join('section', 'section.id = '.$section_id);

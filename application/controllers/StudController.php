@@ -6,15 +6,13 @@ include_once (dirname(__FILE__) . "/AppController.php");
       { 
          parent::__construct(); 
 		 $this->load->model('Stud_Model');
+		 $this->load->model('AttendanceModel');
          $this->load->database(); 
 		 
-      } 
-
-    
+      }    
   
       public function index() { 
-	  $data=array();
-	
+		$data=array();	
 	    $data = $this->Stud_Model->studentview(); 
 		$data['page'] = "Stud_view";
 		$this->load->view('template',$data);
@@ -22,19 +20,41 @@ include_once (dirname(__FILE__) . "/AppController.php");
       } 
   
       public function add_student_view() { 
-	  $data=array();
-         $this->load->helper('form'); 
+		$data=array();
+        $this->load->helper('form'); 
+		$data = $this->AttendanceModel->GetClass();
 		$data['page'] = "Stud_add";
-		$this->load->view('template',$data);
-         
-		
+		$this->load->view('template',$data);	
       } 
+	  
+	  public function getsection(){
+		  	$class_id 	= $this->input->post('class_id');
+			$data 		= $this->AttendanceModel->GetSectionList($class_id);
+			echo '<div class="left">';
+					echo form_label('Section id'); 
+			echo '</div>';
+			
+			foreach($data['section'] as $sec){
+				$section_array[$sec->id]=$sec->section;
+			}
+			echo form_dropdown('section_id',$section_array,'class=choose_section');
+		  
+	  }
   
       public function add_student() { 
 		$data=array();
-		$this->form_validation->set_rules('name', 'Name', 'required|min_length[4]|max_length[10]');      
+		$validation = array(
+			array(
+				'field' => 'name',
+				'label' => 'NAME', 
+				'rules' => 'trim|required|min_length[4]|max_length[10]', 
+				"errors" => array(
+								'required' => " Enter your %s. ")
+			)
+		);
+
+		$this->form_validation->set_rules($validation);      
 		 if ($this->form_validation->run() == FALSE) {	
-			//$this->form_validation->set_message('name', 'Name should not be empty');		 
 			$data['page'] = "Stud_add";
 			$this->load->view('template',$data);
          }else{
@@ -98,22 +118,15 @@ include_once (dirname(__FILE__) . "/AppController.php");
                   .$r->roll_no."'>Delete</a></td>"; 
                echo "<tr>"; 
             } 
-
-			echo '</table>'; 
-				
-				
-			}
-			
-			
+			echo '</table>'; 				
+			}			
 		}
       public function update_student_view() { 
-        $data =array();
-         $roll_no = $this->uri->segment('3'); 
-         $query = $this->db->get_where("student",array("roll_no"=>$roll_no));
-         $data['records'] = $query->result(); 
-         $data['old_roll_no'] = $roll_no; 
-		 
-		 $data['page'] = "Stud_edit";
+			$data =array();
+			$roll_no = $this->uri->segment('3'); 
+			$data = $this->Stud_Model->EditStudent($roll_no);
+
+			$data['page'] = "Stud_edit";
 			$this->load->view('template',$data);
       //   $this->load->view('Stud_edit',$data); 
 		 
@@ -122,16 +135,15 @@ include_once (dirname(__FILE__) . "/AppController.php");
       public function update_student(){ 
         		
          $data = array( 
-            'roll_no' => $this->input->post('roll_no'), 
+          
             'name' => $this->input->post('name'),
             'phone_number' => $this->input->post('phone_number'),
             'city' => $this->input->post('city') 
-         ); 
-			
+         ); 			
          $old_roll_no = $this->input->post('old_roll_no'); 
 		 $data = $this->Stud_Model->studentupdate($data,$old_roll_no); 
 		 $data['page'] = "Stud_view";
-			$this->load->view('template',$data);
+		 $this->load->view('template',$data);
       //   $this->load->view('Stud_view',$data); 
 		 
       } 

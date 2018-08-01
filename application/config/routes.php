@@ -56,6 +56,7 @@ $route['stud'] = "StudController";
 $route['verify'] = "Verify"; 
 $route['stud/searchcityajax'] = "StudController/searchcityajax"; 
 $route['stud/add'] = 'StudController/add_student'; 
+$route['stud/getsection'] = 'StudController/getsection'; 
 $route['stud/add_view'] = 'StudController/add_student_view'; 
 $route['stud/edit/(\d+)'] = 'StudController/update_student_view/$1'; 
 $route['stud/delete/(\d+)'] = 'StudController/delete_student/$1';

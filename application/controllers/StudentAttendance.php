@@ -22,6 +22,14 @@ class StudentAttendance extends CI_Controller {
 				echo '<option value="'.$sec->id .'">'.$sec->section .'</option>';
 			}
 			echo 	'</select>';
+			echo 	'<h4>From date and to date for view only</h4>';
+			echo	'<div class="left">';
+			echo	'From date';
+			echo 	'<input type="date" name="from_date" value="">';
+			echo	'</div><div class="left">';
+			echo	'To date';
+			echo 	'<input type="date" name="to_date" value="">';
+			echo	'</div>';
 			echo 	form_submit(array('id'=>'classsubmit','value'=>'Submit','name'=>'getubmit')); 
 			echo 	form_submit(array('id'=>'viewsubmit','value'=>'View' ,'name'=>'viewsubmit')); 
 						

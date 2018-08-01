@@ -23,7 +23,7 @@ class reportcontroller extends CI_Controller {
 			'exam_name' => $this->input->post('exam_name')			
 			);
 		$getexamsub = $this->exammodel->getexamsub($data);	
-		echo '<div class="">Choose subject for <strong>'.$this->input->post('exam_name') .'</strong></div><select name="choose_sub" class="choose_sub"><option>Choose subject</option>';
+		echo '<h4 class="">Choose subject for <strong>'.$this->input->post('exam_name') .'</strong></h4><select name="choose_sub" class="choose_sub"><option>Choose subject</option>';
 			 foreach($getexamsub['result'] as $res){
 				  echo '<option value="'. $res->id .'">'.$res->subject_name . '</option>';
 			  } 
