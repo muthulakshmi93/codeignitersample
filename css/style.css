@@ -157,3 +157,5 @@ text-align: center;
 	margin-top:20px;
 	margin-bottom:20px;
 }
+.attendance_table th{ text-align:left;}
+.attendance_table td{text-align:center;}

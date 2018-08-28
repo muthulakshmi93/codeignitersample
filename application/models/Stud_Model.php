@@ -7,8 +7,13 @@
    
       public function studentinsert($data) { 
          if ($this->db->insert("student", $data)) { 
-			$query = $this->db->get("student"); 
-			$data['records'] = $query->result(); 
+			$this->db->select('student.roll_no,student.name,student.phone_number,student.city,class.class_name,section.section');
+		$this->db->from('student');				
+		$this->db->join('section', 'section.id = student.section_id');
+		$this->db->join('class', 'class.id = student.class_id');	
+		$this->db->order_by("student.roll_no","asc");			
+		$query = $this->db->get(); 			
+        $data['records'] = $query->result();
             return $data; 
          } 
       } 
@@ -50,7 +55,12 @@
 	}
       public function studentdelete($roll_no) { 
          if ($this->db->delete("student", "roll_no = ".$roll_no)) { 
-            $query = $this->db->get("student"); 
+           $this->db->select('student.roll_no,student.name,student.phone_number,student.city,class.class_name,section.section');
+		$this->db->from('student');				
+		$this->db->join('section', 'section.id = student.section_id');
+		$this->db->join('class', 'class.id = student.class_id');	
+		$this->db->order_by("student.roll_no","asc");			
+		$query = $this->db->get(); 	
 			$data['records'] = $query->result(); 
 			return $data;
          } 

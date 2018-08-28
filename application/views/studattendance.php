@@ -34,8 +34,7 @@ if(isset($student_list)){
 	}
 	echo '</tr>';
 	$current_day 	= date('l');
-	$current_key 	= array_search ($current_day, $day_array);
-	
+	$current_key 	= array_search ($current_day, $day_array);	
 	$args_list 		= array('id'=>'attendance','name'=>'attendance');
 
 		foreach($student_list as $key => $student){				
@@ -68,13 +67,70 @@ if(isset($student_list)){
 }
 if(isset($result_view)){
 	echo '<h1> Attendance for class:'.$result_view[0]->class_name .' & Section:'.$result_view[0]->section .'</h1>';
-	echo '<table><tr><th>Name</th><th>Attendance</th><th>Date</th></tr>';
+	//echo '<table><tr><th>Name</th><th>Attendance</th><th>Date</th></tr>';	
+	$date_array = array();
 	foreach($result_view as $views){
 		$datefull = strtotime($views->created);
-		$date_attendance = date('d-m-Y',$datefull);
-		echo '<tr><td>'.$views->name .'</td><td>'.$views->attendance.'</td><td>'.$date_attendance.'</td></tr>';		
+		$date_attendance = date('d-m-Y',$datefull);		
+		$name = $views->name; $attendance = $views->attendance;
+		$date_array[$date_attendance][] = array('name'=>$name,'attendance'=>$attendance);
+				
 	}
-	echo '</table>';
+	$i =1;
+	
+	$temp = array();
+	foreach($date_array AS $k=>$v)
+	{
+		$temp['head'][$k] = $k;
+		$temp['head'] = array_values($temp['head']);
+		foreach($v AS $row)
+		{
+			$temp['data'][] = array_merge($row,array("date"=>$k));
+		}
+	}
+	$filter = array();
+	foreach($temp['data'] AS $key => $val)
+	{
+		$filter[$val['name']][$val['date']] = $val;
+	}
+	
+	echo '<table border="1" class="attendance_table"><tr>';
+		$i_n=0;
+		foreach($datearray as $value){
+			if($i_n == 0){
+				echo '<th>Name</th>';
+			}
+			echo '<th>'.$value .'</th>';			
+			$i_n++;			
+		}
+		
+		foreach($filter as $key => $val){
+				$length = count($val);
+				echo '<tr>';
+				echo '<th>'.$key.'</th>';
+				//echo '<td></td>';
+
+				$attn_arry = array_column($val,'date');
+				$attendance_Array = array_column($val,'attendance');
+				
+				foreach($datearray as $key => $check_dates)
+				{
+					
+					if(in_array($check_dates, $attn_arry))
+					{
+						
+							echo "<td>".$val[$check_dates]['attendance']."</td>";
+						
+					}
+					else{
+						echo "<td>-</td>";
+					}
+				}
+				
+				echo '</tr>';				
+		}
+		exit();		 
+	echo '</table>'; 
 }
 if(isset($status)){
 	echo $status;
